@@ -2,30 +2,22 @@ public class Solution {
     private int numerator;
     private int denominator = 1;
 
-    /**
-    * This is a simulation of Prof.&nbsp;Knuth's MIX computer.
-    */
+    /** An especially short bit of Javadoc. */
     public int getNumerator() {
         return numerator;
     }
 
-    /**
-    * This is a simulation of Prof.&nbsp;Knuth's MIX computer.
-    */
+    /** An especially short bit of Javadoc. */
     public void setNumerator(int numerator) {
         this.numerator = numerator;
     }
 
-    /**
-    * This is a simulation of Prof.&nbsp;Knuth's MIX computer.
-    */
+    /** An especially short bit of Javadoc. */
     public int getDenominator() {
         return denominator;
     }
 
-    /**
-    * This is a simulation of Prof.&nbsp;Knuth's MIX computer.
-    */
+    /** An especially short bit of Javadoc. */
     public void setDenominator(int denominator) {
         if (denominator == 0) {
             return;
@@ -33,9 +25,7 @@ public class Solution {
         this.denominator = denominator;
     }
 
-    /**
-    * This is a simulation of Prof.&nbsp;Knuth's MIX computer.
-    */
+    /** An especially short bit of Javadoc. */
     public Solution(int numerator, int denominator) {
         if (denominator != 0) {
             this.numerator = numerator;
@@ -43,9 +33,10 @@ public class Solution {
         }
     }
 
-    /**
-    * This is a simulation of Prof.&nbsp;Knuth's MIX computer.
-    */
+    /** An especially short bit of Javadoc. */
+    public Solution() {}
+
+    /** An especially short bit of Javadoc. */
     private int gcd(int a, int b) {
         if (a > Integer.MAX_VALUE || b > Integer.MAX_VALUE) {
             return 1;
@@ -67,83 +58,80 @@ public class Solution {
         return gcd(a, (b - a));
     }
 
-    /**
-    * This is a simulation of Prof.&nbsp;Knuth's MIX computer.
-    */
-    public void reduce() {
+    /** An especially short bit of Javadoc. */
+    public Solution reduce() {
         int n = gcd(numerator, denominator);
         if (denominator < 0) {
             n = -n;
         }
         numerator /= n;
         denominator /= n;
+        return this;
     }
 
-    /**
-    * This is a simulation of Prof.&nbsp;Knuth's MIX computer.
-    */
+    /** An especially short bit of Javadoc. */
     public Solution add(Solution a) {
-        Solution ans = new Solution(numerator * a.denominator + a.numerator * denominator,
-                                    denominator * a.denominator);
-        numerator = ans.numerator;
-        denominator = ans.denominator;
-        reduce();
+        Solution ans = new Solution(numerator * a.getDenominator() + a.getNumerator() * denominator,
+                                    denominator * a.getDenominator());
+        ans = ans.reduce();
+        numerator = ans.getNumerator();
+        denominator = ans.getDenominator();
         return this;
     }
 
-    /**
-    * This is a simulation of Prof.&nbsp;Knuth's MIX computer.
-    */
+    /** An especially short bit of Javadoc. */
     public Solution subtract(Solution a) {
-        Solution ans = new Solution(numerator * a.denominator - a.numerator * denominator,
-                                    denominator * a.denominator);
-        numerator = ans.numerator;
-        denominator = ans.denominator;
-        reduce();
+        Solution ans = new Solution(numerator * a.getDenominator() - a.getNumerator() * denominator,
+                                    denominator * a.getDenominator());
+        ans = ans.reduce();
+        numerator = ans.getNumerator();
+        denominator = ans.getDenominator();
         return this;
     }
 
-    /**
-    * This is a simulation of Prof.&nbsp;Knuth's MIX computer.
-    */
+    /** An especially short bit of Javadoc. */
     public Solution multiply(Solution a) {
-        numerator *= a.numerator;
-        denominator *= a.denominator;
-        reduce();
+        numerator *= a.getNumerator();
+        denominator *= a.getDenominator();
+        Solution ans = this.reduce();
+        numerator = ans.getNumerator();
+        denominator = ans.getDenominator();
         return this;
     }
 
-    /**
-    * This is a simulation of Prof.&nbsp;Knuth's MIX computer.
-    */
+    /** An especially short bit of Javadoc. */
     public Solution divide(Solution a) {
-        if (a.numerator == 0) {
+        if (a.getNumerator() == 0) {
             return this;
         }
-        numerator *= a.denominator;
-        denominator *= a.numerator;
-        reduce();
+        numerator *= a.getDenominator();
+        denominator *= a.getNumerator();
+        Solution ans = this.reduce();
+        numerator = ans.getNumerator();
+        denominator = ans.getDenominator();
         return this;
     }
 
-    /**
-    * This is a simulation of Prof.&nbsp;Knuth's MIX computer.
-    */
+    /** An especially short bit of Javadoc. */
     public boolean equals(Object obj) {
         if (!(obj instanceof Solution)) {
             return false;
         }
         Solution that = (Solution) obj;
-        that.reduce();
-        reduce();
+        that = that.reduce();
+        Solution t = this.reduce();
+        numerator = t.getNumerator();
+        denominator = t.getDenominator();
         return this.numerator == that.numerator && this.denominator == that.denominator;
     }
 
+    /** An especially short bit of Javadoc. */
     public static void main(String[] args) {
-        Solution a = new Solution(1, 0);
-        //a.multiply(new Solution(1, 0));
-        a.reduce();
-        System.out.println(a.numerator + "/" + a.denominator);
-        //System.out.println(a.equals(new Solution(2, 3)));
+        Solution a = new Solution(1, 2);
+        //a.multiply(new Solution(4, 3));
+        a.divide(new Solution(0, 2));
+        a = a.reduce();
+        System.out.println(a.getNumerator() + "/" + a.getDenominator());
+        System.out.println(a.equals(new Solution(1, 2)));
     }
 }    

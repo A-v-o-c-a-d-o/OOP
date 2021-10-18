@@ -1,6 +1,7 @@
 public class Week4 {
     public static int max2Int(int a, int b) { return Math.max(a, b); }
 
+    /** An especially short bit of Javadoc. */
     public static int minArray(int[] arr) {
         int ans = arr[0];
         for (int i: arr)
