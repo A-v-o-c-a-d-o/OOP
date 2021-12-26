@@ -1,3 +1,4 @@
+package Nhap;
 public class Week4 {
     public static int max2Int(int a, int b) { return Math.max(a, b); }
 

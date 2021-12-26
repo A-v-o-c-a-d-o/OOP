@@ -1,6 +1,6 @@
 package NgoaiLe1;
 
-public class BinaryExpression {
+public abstract class BinaryExpression extends Expression {
     protected Expression left;
     protected Expression right;
     
@@ -8,4 +8,10 @@ public class BinaryExpression {
         this.left = left;
         this.right = right;
     }
+
+    @Override
+    public abstract String toString();
+
+    @Override
+    public abstract double evaluate();
 }

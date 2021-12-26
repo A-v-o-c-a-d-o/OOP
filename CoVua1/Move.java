@@ -1,4 +1,4 @@
-// package CoVua1;
+package CoVua1;
 
 public class Move {
     private int startX;
@@ -8,6 +8,7 @@ public class Move {
     private Piece movedPiece;
     private Piece killedPiece;
     
+    /** create. */
     public Move(int startX, int startY, int endX, int endY, Piece movedPiece) {
         this.startX = startX;
         this.startY = startY;
@@ -16,6 +17,7 @@ public class Move {
         this.movedPiece = movedPiece;
     }
 
+    /** create. */
     public Move(int startX, int startY, int endX, int endY, Piece movedPiece, Piece killedPiece) {
         this.startX = startX;
         this.startY = startY;
@@ -27,7 +29,8 @@ public class Move {
 
     @Override
     public String toString() {
-        return movedPiece.getColor() + "-" + movedPiece.getSymbol() + (char) ('a' + endX - 1) + endY;
+        return movedPiece.getColor() + "-" + movedPiece.getSymbol()
+                + (char) ('a' + endX - 1) + endY;
     }
 
     public int getStartX() {

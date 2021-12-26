@@ -1,3 +1,4 @@
+package Nhap;
 public class Solution {
     private int numerator;
     private int denominator = 1;

@@ -1,15 +1,16 @@
-// package CoVua1;
+package CoVua1;
 
 import java.util.ArrayList;
 
 public class Game {
     private Board board;
-    private ArrayList<Move> moveHistory;
+    private ArrayList<Move> moveHistory = new ArrayList<>();
     
     public Game(Board board) {
         this.board = board;
     }
 
+    /** move item. */
     public void movePiece(Piece piece, int x, int y) {
         if (!board.getPieces().contains(piece)) {
             return;
@@ -30,8 +31,6 @@ public class Game {
             board.addPiece(piece);
             moveHistory.add(new Move(startX, startY, x, y, piece));
         }
-
-
     }
 
     public Board getBoard() {

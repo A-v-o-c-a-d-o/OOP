@@ -1,16 +1,18 @@
-// package CoVua1;
+package CoVua1;
 
 public abstract class Piece {
     private int coordinatesX;
     private int coordinatesY;
     private String color;
     
+    /** create. */
     public Piece(int coordinatesX, int coordinatesY) {
         this.coordinatesX = coordinatesX;
         this.coordinatesY = coordinatesY;
         this.color = "white";
     }
 
+    /** create. */
     public Piece(int coordinatesX, int coordinatesY, String color) {
         this.coordinatesX = coordinatesX;
         this.coordinatesY = coordinatesY;
